@@ -1,0 +1,79 @@
+{%extends 'enactus-template/base.html'%}
+{%load static%}
+{%block title%}enactus | blogs{%endblock%}
+{% block content%}
+<section class="banner">
+    <div class="container text-center about">
+       <h2>{{ title }}</h2>
+       <div class="form-box">
+            <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" name="q" value="{{request.GET.q}}" type="search" placeholder="Search any posts" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+          </div>
+    </div>
+   
+</section>
+<section class="main-blog">
+    <div class="container">
+    <div class="row">
+     <div class="col-sm-8">
+    {% if object_list and not object_list.draft %}
+     {%for post in object_list %}
+     
+        <div class="card mb-3 post-card" >
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                <a href="{{post.get_absolute_url}}">
+                {% if post.image %}
+                <img src="{{ post.image.url }}" class="card-img img-responsive img-thumbnail" alt="...">
+                {%endif%}
+                </a>
+                </div>
+                <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{{post.get_absolute_url}}">{{post.title}}</a>{% if post.draft%} <span style="color:red;">Draft</span> {% endif%} <small class="text-muted">{{post.timestamp|timesince}} ago</small></h5>
+                    <P>Author: <small>{{post.user}}</small></P>
+                <p class="card-text"></p>
+                    <p class="card-text">{{post.content|truncatechars:152}}.</p>
+                    <a href="{{post.get_absolute_url}}" class="btn px-4 py-2" id="continue">Continue Reading...</a>
+                </a>
+                </div>
+                </div>
+            </div>
+        </div>
+        
+        {%endfor%}
+       
+        <div class="pagination">
+            
+                <span class="step-links">
+                    {% if object_list.has_previous %}
+                        <a href="?page=1">&laquo; </a>
+                        <a href="?page={{ object_list.previous_page_number }}">previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+                    </span>
+            
+                    {% if object_list.has_next %}
+                        <a href="?page={{ object_list.next_page_number }}">next</a>
+                        <a href="?page={{ object_list.paginator.num_pages }}">&raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+            {%else%}
+            <h4>No post Available</h4>
+            {%endif%}
+    </div>
+    <br>
+    <div class="col-sm-4 sidePost">
+    <div class="inner-sidepost">
+            <div class="fb-page" data-href="https://www.facebook.com/enactusudsnav/" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/enactusudsnav/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/enactusudsnav/">Enactus UDS Nav.campus</a></blockquote></div>
+               </div>
+           </div>
+    </div>
+    </div>
+</section>
+{%endblock%}

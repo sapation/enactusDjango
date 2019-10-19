@@ -1,0 +1,98 @@
+{%extends 'enactus-template/base.html'%}
+{%load static%}
+{%block title%}enactus | posts-details{%endblock%}
+{% block content%}
+<section class="banner">
+    <div class="container text-center about">
+       <h2>{{ title }}</h2>
+       <p class="card-text">Author: {{instance.user}}  <small class="">{{instance.timestamp}}</small></p>
+    </div>
+</section>
+<section class="main-blog">
+    <div class="container">
+        <div class="row">
+        <div class="col-sm-8 text-content">
+            <!-- <h3 class="card-title">{{instance.title}}</h3> -->
+            <hr>
+       {% if instance.image %}
+          <img src="{{ instance.image.url }}" class="img-responsive img-thumbnail" width="100%" height="60%" alt="...">
+        {%endif%}
+        <br>
+    <p class="card-text">{{instance.content}}</p>
+    <p>
+        <div class="fb-like" data-href="{{request.build_absolute_uri}}" data-width="" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div> 
+        <a class="twitter-share-button"
+        href="https://twitter.com/intent/tweet?text=Hello%20world">
+      Tweet</a>
+    </p>
+    <hr>
+
+    <div class="fb-comments" data-href="{{request.build_absolute_uri}}" data-width="" data-numposts="5"></div>
+</div>
+
+
+<!-- <h5>Related Post</h5><hr>
+  
+ <div class="row">
+     <div class="col">
+    <div class="card mb-3 post-card" >
+        <div class="row no-gutters">
+            <a href="{{post.get_absolute_url}}">
+            <img src="{% static 'img/enactus1.jpg' %}" class="card-img img-responsive" alt="...">
+            </a>
+            <div class="card-body">
+                <p class="card-title"><a href="{{post.get_absolute_url}}">this is the posts</a></p>
+
+            <p class="card-text"></p>
+                <p class="card-text"><small class="text-muted">20 min ago</small></p>
+            </a>
+            
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="col">
+            <div class="card mb-3 post-card" >
+                    <div class="row no-gutters">
+                        <a href="{{post.get_absolute_url}}">
+                        <img src="{% static 'img/enactus1.jpg' %}" class="card-img img-responsive" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{{post.get_absolute_url}}">this is the posts</a></h5>
+        
+                        <p class="card-text"></p>
+                            <p class="card-text"><small class="text-muted">20 min ago</small></p>
+                        </a>
+                        
+                        </div>
+                    </div>
+                </div>
+    </div>
+    <div class="col">
+            <div class="card mb-3 post-card" >
+                    <div class="row no-gutters">
+                        <a href="{{post.get_absolute_url}}">
+                        <img src="{% static 'img/enactus1.jpg' %}" class="card-img img-responsive" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{{post.get_absolute_url}}">this is the posts</a></h5>
+        
+                        <p class="card-text"></p>
+                            <p class="card-text"><small class="text-muted">20 min ago</small></p>
+                        </a>
+                        
+                        </div>
+                    </div>
+                </div>
+    </div>  
+</div>   -->
+
+<div class="col-sm-4 sidePost">
+    <div class="inner-sidepost">
+        <div class="fb-page" data-href="https://www.facebook.com/enactusudsnav/" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/enactusudsnav/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/enactusudsnav/">Enactus UDS Nav.campus</a></blockquote></div>
+            </div>
+        </div>              
+ </div>
+</div>
+</section>
+{%endblock%}
